@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.xml2json.js"></script>
+<script src="js/sfn.js"></script>
+<script src="js/bsp.js"></script>
+<link type="text/css" rel="stylesheet" href="css/example.css"/>
+<style type="text/css">
+</style>
+<script>
+
+window.onload = function() {
+  getUserVars(doUserVars);
+  getUDPEvents(doUDPEvents);
+};
+
+function doUserVars(us)
+{
+  //printObj(us)
+
+  if(typeof us === 'undefined')
+  {
+    console.log("userVars not defined");
+      setTimeout(function(){getUserVars(doUserVars)},1000);
+    return;
+  }
+
+  var str='<form action="/SetValues" method="post">';
+  $.each(us,function(){
+
+    str+=this.key+':<br/><input class="bs_input" type="text" name="'+this.key+'" value="'+this.value+'"/><br/>';
+  });
+  str+='<br/><input id="button"  type="submit" value="Set Values"/></form>';
+  $('div.varform').html(str);
+}
+
+function doUDPEvents(us)
+{
+  printObj(us);
+  if(typeof us === 'undefined')
+  {
+    console.log("UDPEvents not defined");
+    setTimeout(function(){getUDPEvents(doUDPEvents)},1000);
+    return;
+  }
+  var str="";
+  $.each(us.events,function(){
+    var val="'"+this.action+"'";
+    str+='<button onclick="sendUDPString('+val+')">'+this.label+'</button>';
+    console.log(str);
+  });
+  $('div.udpdiv').html(str);
+}
+
+function sendUDPString(s)
+{
+  console.log("sendUDPString");
+  printObj(s);
+  $.post("/SendUDP", { key: "SendUDP", value: s } );
+}
+
+</script>
+
+
+<html>
+  <head>
+    <title></title>
+  </head>
+<body>
+<div id="header">User Variables and UDP Events</div>
+<center>
+<div class="udpdiv"></div>
+<p>
+<hr>
+<p>
+<div class="varform"></div>
+<div id="logo">
+</div>
+</center>
+</body>
+</html>

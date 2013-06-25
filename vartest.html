@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/jquery.xml2json.js"></script>
+<script src="js/sfn.js"></script>
+<script src="js/bsp.js"></script>
+<link type="text/css" rel="stylesheet" href="css/example.css"/>
+<style type="text/css">
+</style>
+<script>
+
+window.onload = function() {
+  getUserVarMatch(updateVar1,"var1");
+  getUserVarMatch(updateVar2,"var2");
+  
+};
+
+function showMatch(s)
+{
+  printObj(s)
+}
+
+function updateVar1(s)
+{
+  $('#var1').html(s[0]);
+}
+
+function updateVar2(s)
+{
+  $('#var2').html(s[0]);
+}
+</script>
+
+<html>
+  <head>
+    <title></title>
+  </head>
+<body>
+<center>
+Var1 value: <div id="var1">Unknown</div>
+Var2 value: <div id="var2">Unknown</div>
+</center>
+</body>
+</html>
