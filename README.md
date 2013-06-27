@@ -12,9 +12,7 @@ Summary of files:
 * js - a folder with javascript files
 * css - a folder with CSS files
 * images - a folder with images
-* brs - a folder with BrightScript code that could be of use
- 
-NOTE:  to get UDP support in the current test version of BrigthAuthor (2.7.0.13) you need to specify the custom autorun autorun-udp-local.brs found in the brs folder.
+
 
 The functionality exposed in the example html files has been at least partially tested.  Some extra javascript funtionality not shown in those examples is very much a work in progress.
 
