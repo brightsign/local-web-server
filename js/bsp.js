@@ -151,6 +151,14 @@ function sendUDPEvent(callback, sUrl)
 
 function bspUDPEventList(sendPort,recvPort,evList)
 {
+    evList.sort(function(a, b){
+     var labelA=a.label.toLowerCase(), labelB=b.label.toLowerCase()
+     if (labelA < labelB) //sort string ascending
+      return -1 
+     if (labelA > labelB)
+      return 1
+     return 0 //default return value (no sorting)
+    })
     this.sendPort=sendPort;
     this.recvPort=recvPort;
     this.events=evList;
